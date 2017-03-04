@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Net.Http;
+using System.Web.Http;
 using WebApi2UnityDemo.Models;
 
 namespace WebApi2UnityDemo.Controllers
@@ -15,12 +17,20 @@ namespace WebApi2UnityDemo.Controllers
         //[HttpGet]
         public IHttpActionResult Get(int id)
         {
-            var product = _repository.GetById(id);
-            if (product == null)
+            try
             {
-                return NotFound();
+                var product = _repository.GetById(id);
+                if (product == null)
+                {
+                    return NotFound();
+                }
+                return Ok(product);
             }
-            return Ok(product);
+            catch (Exception ex)
+            {
+                return (IHttpActionResult)Request.CreateResponse(System.Net.HttpStatusCode.OK, ex.ToString());
+            }
+            
         }
 
         //[HttpGet]
