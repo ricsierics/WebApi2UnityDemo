@@ -4,7 +4,7 @@ namespace WebApi2UnityDemo.Models
 {
     public class ProductsContext : DbContext
     {
-        public ProductsContext() : base("name=ProductsContext")
+        public ProductsContext() : base(/*"name=ProductsContext"*/)
         {
 
         }

@@ -1,10 +1,8 @@
 ﻿using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using WebApi2UnityDemo.Models;
 using WebApi2UnityDemo.Resolver;
+using System.Net.Http.Headers;
 
 namespace WebApi2UnityDemo
 {
@@ -17,6 +15,7 @@ namespace WebApi2UnityDemo
             config.DependencyResolver = new UnityResolver(container);
 
             // Web API configuration and services
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
